@@ -4,42 +4,43 @@
     <title>Tax Assistant</title>
     <style>
         body {
-    font-family: 'Segoe UI', sans-serif;
-    margin: 40px;
-    background-color: #f4f8fb;
-    color: #333;
-}
+            font-family: 'Segoe UI', sans-serif;
+            margin: 40px;
+            background-color: #f4f8fb;
+            color: #333;
+        }
 
-input {
-    margin: 10px 0;
-    padding: 8px;
-    width: 320px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
+        input {
+            margin: 10px 0;
+            padding: 8px;
+            width: 320px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
 
-button {
-    padding: 10px 20px;
-    background-color: #0078d4;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+        button {
+            padding: 10px 20px;
+            background-color: #0078d4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
 
-.summary {
-    background: #ffffff;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
-    max-width: 600px;
-    margin-top: 20px;
-}
-
+        .summary {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>🧾 Tax Assistant</h1>
+
     <form method="post">
         <input type="text" name="income" placeholder="Total Annual Income (₹)" required><br>
         <input type="text" name="investments" placeholder="80C Investments (₹)" required><br>
@@ -51,30 +52,41 @@ button {
     {% if result %}
         {% if result.error %}
             <p style="color:red;">{{ result.error }}</p>
-        {% else %}
-            <h2>📋 Summary</h2>
-            <p><strong>Taxable Income:</strong> ₹{{ result.taxable_income | round(2) }}</p>
-            <p><strong>Deductions:</strong> {{ result.deductions }}</p>
-            <p><strong>Tax (Old Regime):</strong> ₹{{ result.tax_old | round(2) }}</p>
-            <p><strong>Tax (New Regime):</strong> ₹{{ result.tax_new | round(2) }}</p>
-            <p><strong>Recommended Regime:</strong> {{ result.recommended }}</p>
+        {% elif result.income is defined %}
+            <div id="summary-container" class="summary">
+                <h2>📊 Tax Summary</h2>
+                <p>💼 <strong>Income:</strong> ₹{{ result.income | round(2) }}</p>
+                <p>📉 <strong>Taxable Income:</strong> ₹{{ result.taxable_income | round(2) }}</p>
+                <p>🏷️ <strong>Deductions:</strong></p>
+                <ul>
+                    {% for key, value in result.deductions.items() %}
+                        <li>🔹 {{ key }}: ₹{{ value | round(2) }}</li>
+                    {% endfor %}
+                </ul>
+                <p>👵 <strong>Old Regime Tax:</strong> ₹{{ result.tax_old | round(2) }}</p>
+                <p>🧒 <strong>New Regime Tax:</strong> ₹{{ result.tax_new | round(2) }}</p>
+                <p>🟢 <strong>Recommended:</strong> {{ result.recommended }}</p>
+                <p>💬 {{ result.regime_comment }}</p>
+            </div>
+
+            <button onclick="downloadPDF()">📥 Download Summary as PDF</button>
         {% endif %}
     {% endif %}
 
-    <div class="summary">
-    <h2>📊 Tax Summary</h2>
-    <p>💼 <strong>Income:</strong> ₹{{ result.income | round(2) }}</p>
-    <p>📉 <strong>Taxable Income:</strong> ₹{{ result.taxable_income | round(2) }}</p>
-    <p>🏷️ <strong>Deductions:</strong></p>
-    <ul>
-        {% for key, value in result.deductions.items() %}
-        <li>🔹 {{ key }}: ₹{{ value }}</li>
-        {% endfor %}
-    </ul>
-    <p>👵 <strong>Old Regime Tax:</strong> ₹{{ result.tax_old | round(2) }}</p>
-    <p>🧒 <strong>New Regime Tax:</strong> ₹{{ result.tax_new | round(2) }}</p>
-    <p>🟢 <strong>Recommended:</strong> {{ result.recommended }}</p>
-</div>
-
+    <!-- html2pdf.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        function downloadPDF() {
+            const element = document.getElementById("summary-container");
+            html2pdf()
+                .set({
+                    margin: 1,
+                    filename: 'Tax_Summary.pdf',
+                    html2canvas: { scale: 2 }
+                })
+                .from(element)
+                .save();
+        }
+    </script>
 </body>
 </html>
