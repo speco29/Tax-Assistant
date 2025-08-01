@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tax Assistant</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; }
+        input { margin: 5px; padding: 8px; width: 300px; }
+        button { padding: 10px 20px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>🧾 Tax Assistant</h1>
+    <form method="post">
+        <input type="text" name="income" placeholder="Total Annual Income (₹)" required><br>
+        <input type="text" name="investments" placeholder="80C Investments (₹)" required><br>
+        <input type="text" name="insurance" placeholder="Health Insurance (₹)" required><br>
+        <input type="text" name="home_interest" placeholder="Home Loan Interest (₹)" required><br>
+        <button type="submit">Calculate Tax</button>
+    </form>
+
+    {% if result %}
+        {% if result.error %}
+            <p style="color:red;">{{ result.error }}</p>
+        {% else %}
+            <h2>📋 Summary</h2>
+            <p><strong>Taxable Income:</strong> ₹{{ result.taxable_income | round(2) }}</p>
+            <p><strong>Deductions:</strong> {{ result.deductions }}</p>
+            <p><strong>Tax (Old Regime):</strong> ₹{{ result.tax_old | round(2) }}</p>
+            <p><strong>Tax (New Regime):</strong> ₹{{ result.tax_new | round(2) }}</p>
+            <p><strong>Recommended Regime:</strong> {{ result.recommended }}</p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
