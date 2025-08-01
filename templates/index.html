@@ -3,9 +3,39 @@
 <head>
     <title>Tax Assistant</title>
     <style>
-        body { font-family: sans-serif; margin: 40px; }
-        input { margin: 5px; padding: 8px; width: 300px; }
-        button { padding: 10px 20px; margin-top: 10px; }
+        body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 40px;
+    background-color: #f4f8fb;
+    color: #333;
+}
+
+input {
+    margin: 10px 0;
+    padding: 8px;
+    width: 320px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #0078d4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.summary {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin-top: 20px;
+}
+
     </style>
 </head>
 <body>
@@ -30,5 +60,21 @@
             <p><strong>Recommended Regime:</strong> {{ result.recommended }}</p>
         {% endif %}
     {% endif %}
+
+    <div class="summary">
+    <h2>📊 Tax Summary</h2>
+    <p>💼 <strong>Income:</strong> ₹{{ result.income | round(2) }}</p>
+    <p>📉 <strong>Taxable Income:</strong> ₹{{ result.taxable_income | round(2) }}</p>
+    <p>🏷️ <strong>Deductions:</strong></p>
+    <ul>
+        {% for key, value in result.deductions.items() %}
+        <li>🔹 {{ key }}: ₹{{ value }}</li>
+        {% endfor %}
+    </ul>
+    <p>👵 <strong>Old Regime Tax:</strong> ₹{{ result.tax_old | round(2) }}</p>
+    <p>🧒 <strong>New Regime Tax:</strong> ₹{{ result.tax_new | round(2) }}</p>
+    <p>🟢 <strong>Recommended:</strong> {{ result.recommended }}</p>
+</div>
+
 </body>
 </html>
