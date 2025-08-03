@@ -68,4 +68,4 @@ After submitting your tax inputs, click the Download Summary as PDF button to ex
     Recommended: New Regime  
     💬 Deductions seem underutilized—New Regime might offer better savings.
 ```
-**To see the result of assistant, you can visit the ```visuals``` folder.**
+**To see the result of assistant, you can visit the ```visuals``` folder as it contains the screenshots of example.**
