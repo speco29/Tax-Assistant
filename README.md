@@ -7,7 +7,7 @@ A sleek and interactive Flask web app that helps users compare income tax under 
 ## ✨ Features
 
 - 🔢 Input total income, eligible deductions (80C, 80D, home loan interest)
-- 📊 Calculates tax under both Old and New regimes
+- 📊 Calculates tax under both Old and New regimes 
 - 🧠 Suggests the more beneficial regime based on deduction usage
 - 💬 Provides insights into deduction utilization and savings strategy
 - 📥 Exports tax summary to PDF using `html2pdf.js`
