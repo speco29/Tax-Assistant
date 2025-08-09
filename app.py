@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from tax_engine import calculate_tax_old_regime, calculate_tax_new_regime
 from deduction_rule import identify_deductions
-
+ 
 app = Flask(__name__) 
 
 @app.route("/", methods=["GET", "POST"])
