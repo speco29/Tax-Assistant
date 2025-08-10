@@ -1,4 +1,4 @@
-
+ 
 def identify_deductions(user_data):
     deductions = {}  
     
