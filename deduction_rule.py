@@ -1,7 +1,7 @@
   
 def identify_deductions(user_data):
     deductions = {}   
-    
+     
     # Basic example: Section 80C (e.g., PPF, ELSS) 
     investments = user_data.get("investments", 0)
     deductions["80C"] = min(investments, 150000)
