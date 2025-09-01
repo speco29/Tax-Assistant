@@ -1,6 +1,6 @@
   
 def identify_deductions(user_data):
-    deductions = {}  
+    deductions = {}   
     
     # Basic example: Section 80C (e.g., PPF, ELSS) 
     investments = user_data.get("investments", 0)
