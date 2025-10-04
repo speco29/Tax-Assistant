@@ -4,7 +4,7 @@ A sleek and interactive Flask web app that helps users mpare incocome tax under 
      
 ---        
     
-## ✨ Features
+## ✨ Features 
   
 - 🔢 Input total income, eligible deductions (80C, 80D, home loan interest)
 - 📊 Calculates tax under both Old and New regimes 
