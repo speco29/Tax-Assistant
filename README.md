@@ -27,7 +27,7 @@ A sleek and interactive Flask web app that helps users mpare incocome tax under 
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ```bash
 # Create virtual environment (optional but recommended)
@@ -66,6 +66,6 @@ After submitting your tax inputs, click the Download Summary as PDF button to ex
     Old Regime Tax: ₹110500.00  
     New Regime Tax: ₹90000.00  
     Recommended: New Regime  
-    💬 Deductions seem underutilized—New Regime might offer better savings.
+     Deductions seem underutilized—New Regime might offer better savings.
 ```
 **To see the result of assistant, you can visit the ```visuals``` folder as it contains the screenshots of example.**
