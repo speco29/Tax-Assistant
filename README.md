@@ -1,4 +1,4 @@
-# 🧾 Tax Assistant
+#  Tax Assistant
 
 A sleek and interactive Flask web app that helps users mpare incocome tax under **India's old and new tax regimes**. Based on deductions and total income, it calculates both tax outcomes and recommends the optimal regime—plus offers a **PDF export** for financial summaries!
        
