@@ -15,7 +15,7 @@ A sleek and interactive Flask web app that helps users mpare incocome tax under 
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 | Tech          | Purpose                              |
 |---------------|--------------------------------------|
