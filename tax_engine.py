@@ -3,7 +3,7 @@
 def calculate_tax_old_regime(income, deductions):
     taxable_income = income - sum(deductions.values())
 
-    # Old regime slabs
+    # Old regime slabs 
     if taxable_income <= 250000:
         tax = 0
     elif taxable_income <= 500000:
