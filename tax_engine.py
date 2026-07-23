@@ -1,5 +1,5 @@
 # tax_engine.py
-
+ 
 def calculate_tax_old_regime(income, deductions):
     taxable_income = income - sum(deductions.values())
 
